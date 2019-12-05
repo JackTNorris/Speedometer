@@ -57,6 +57,7 @@ export default class App extends React.Component {
   state = {
   loading: false,
   updatesEnabled: false,
+  speed: 0,
   location: {}
 };
 
@@ -99,11 +100,11 @@ export default class App extends React.Component {
           <Text style = {{fontSize: 30, borderBottomWidth: 2}}>Speedometer Testing</Text>
         </View>
         <View style = {{flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-        <Text>SPEED:</Text>
-        <Text>{this.state.speed}</Text>
+        <Text>MPH</Text>
+        <Text style = {{fontSize: 70}}>{Math.round(parseInt(this.state.speed) * 2.237)}</Text>
         </View>
-        <View style = {{flex: 1, flexDirection: 'column', justifyContent: 'flex-end'}}>
-        <Button title='Measure Speed' onPress={this.getLocUpdate} />
+        <View style = {{flex: 1, flexDirection: 'column', justifyContent: 'flex-end', marginBottom: 20}}>
+          <Button title='Measure Speed' onPress={this.getLocUpdate} />
         </View>
       </View>
     );
@@ -111,5 +112,5 @@ export default class App extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  
+
 });
