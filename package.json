@@ -7,8 +7,7 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint .",
-    "config-project-folders": " [ -d components ] || mkdir  components && [ -d assets ] || mkdir assets && [ -d config ] || mkdir config && [ -d screens ] || mkdir screens"
+    "lint": "eslint ."
   },
   "dependencies": {
     "react": "16.9.0",
