@@ -91,12 +91,11 @@ export default class App extends React.Component {
   getSpeedLimit = async (lat, long) => {
     let speedLimit = 0;
     await fetch(
-      `https://route.cit.api.here.com/routing/7.2/calculateroute.json?jsonAttributes=1&waypoint0=${lat},${long}&waypoint1=${lat},${long}&legattributes=li&linkattributes=nl,fc&mode=fastest;car;traffic:enabled&app_code=1SJYNrIZOz4yoN1HUbnxKA&app_id=HtPbLdxKKA5U2FiGbQ4H`,
+      `https://route.cit.api.here.com/routing/7.2/calculateroute.json?jsonAttributes=1&waypoint0=${lat},${long}&waypoint1=${lat},${long}&legattributes=li&linkattributes=nl,fc&mode=fastest;car;traffic:enabled&app_code=*****&app_id=*******`,
     )
       .then(res => res.json())
       .then(response => {
         let data = response;
-        //console.log('The speed limit data is : ' + JSON.stringify(response));
         speedLimit = data.response.route[0].leg[0].link[0].speedLimit * 2.237;
       });
     return speedLimit;
@@ -111,8 +110,6 @@ export default class App extends React.Component {
         position => {
           this.setState({location: position});
           this.setState({speed: position.coords.speed * 2.237});
-          //this.setState({speedLimit: speedLimit});
-          //console.log(position);
           console.log(position.coords.speed);
         },
         error => {
@@ -216,52 +213,6 @@ export default class App extends React.Component {
         </View>
       </View>
     );
-    /*
-    return (
-      <View style={{flex: 1, flexDirection: 'column', alignItems: 'center'}}>
-        <View style={{flex: 1}}>
-          <Text style={{fontSize: 30, borderBottomWidth: 2}}>
-            Speedometer Testing
-          </Text>
-        </View>
-        <View
-          style={{
-            flex: 1,
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
-          <Text>MPH</Text>
-          <Text style={{fontSize: 70}}>
-            {Math.round(parseInt(this.state.speed))}
-          </Text>
-          <Text>Speed Limit</Text>
-          <Text>
-            {this.state.speedLimit
-              ? Math.round(this.state.speedLimit)
-              : 'Speed Limit Data Not Available'}
-          </Text>
-        </View>
-        <View
-          style={{
-            flex: 1,
-            flexDirection: 'column',
-            justifyContent: 'flex-end',
-            marginBottom: 20,
-          }}>
-          <Button
-            title="Measure Speed"
-            onPress={this.getLocUpdate}
-            disabled={this.state.updatesEnabled}
-          />
-          <Button
-            title="Stop Measuring"
-            onPress={this.stopUpdates}
-            disabled={!this.state.updatesEnabled}
-          />
-        </View>
-      </View>
-    );*/
   }
 }
 
